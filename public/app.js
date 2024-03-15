@@ -21,11 +21,16 @@ export default class App {
     let text = await res.text();
     console.log(text);
 
-    let res2 = await fetch("/api/students/mchang");
+    let res2 = await fetch("/api/students/nkishnani");
     let obj = await res2.json();
 
-    console.log(obj.givenName);
+    let s = `${text}\n${obj.givenName} ${obj.surname}`;
+    document.querySelector("#results").textContent = s;
+    
+    console.log("javascript object", obj);
 
-    console.log("clieckeddd !!!");
+    let student = new Student(obj);
+    console.log(student);
+
   }
 }
