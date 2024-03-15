@@ -2,6 +2,7 @@ export default class Student {
 
   constructor(data) {
     Object.assign(this, data);
+    this._uri  = `/api/students/${this.id}`;
   }
 
   static  async  load(id){
@@ -13,7 +14,7 @@ export default class Student {
 
   async declare(deptCode){
     let body = {dept: deptCode};
-   let res = await fetch(`/api/students/${this.id}`, {
+   let res = await fetch(this._uri, {
       method: "PATCH",
       headers: {"Content-Type" : "application/json"},
       body: JSON.stringify(body)
@@ -26,5 +27,13 @@ export default class Student {
     }
 
     this.dept = data.dept;
+  }
+
+  async listCourses(){
+
+    let res = await fetch(`${this._uri}/courses`);
+    let data = await res.json();
+    return data.courses;
+
   }
 }
