@@ -32,5 +32,8 @@ export default class App {
     let student = new Student(obj);
     console.log(student);
 
+    let student2 = await Student.load("knazir");
+    console.log("Student 2", student2);
+
   }
 }
