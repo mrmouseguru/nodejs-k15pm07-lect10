@@ -34,6 +34,8 @@ export default class App {
 
     let student2 = await Student.load("knazir");
     console.log("Student 2", student2);
+    await student2.declare("it");
+    console.log("updated student 2", student2);
 
   }
 }
